@@ -9,7 +9,7 @@ An independent personal research project: each idea starts with an economic hypo
 
 | # | Strategy | Asset class | Hypothesis | Out-of-sample result | Status |
 |---|----------|-------------|------------|----------------------|--------|
-| 01 | [Lead-Lag Centrality](strategies/lead-lag-centrality.md) | US tech / semiconductor equities | Highly connected hub stocks lead their neighbours | Does not beat benchmarks after costs | To improve |
+| 01 | [Lead-Lag Centrality](strategies/lead-lag-centrality.md) | US tech / semiconductor equities | Highly connected hub stocks lead their neighbours | Sharpe 0.45 vs 1.58 for equal-weight; no multi-day lag found | Negative result |
 
 More strategies will be added as they are built. See the [Research Log](research-log.md) for every idea tried, including the ones that failed.
 
