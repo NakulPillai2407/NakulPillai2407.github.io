@@ -1,0 +1,53 @@
+site_name: Systematic Strategy Research Lab
+site_description: Hypothesis-driven trading strategy research with consistent, honest backtesting.
+site_author: Nakul Pillai
+site_url: https://nakulpillai2407.github.io/
+repo_url: https://github.com/NakulPillai2407
+repo_name: NakulPillai2407
+
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.top
+    - navigation.sections
+    - content.code.copy
+    - toc.follow
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+
+nav:
+  - Home: index.md
+  - Strategies:
+      - Overview: strategies/index.md
+      - Lead-Lag Centrality: strategies/lead-lag-centrality.md
+  - Methodology: methodology.md
+  - Research Log: research-log.md
+  - Tools: tools.md
+  - About: about.md
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.details
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
