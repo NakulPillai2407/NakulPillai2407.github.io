@@ -1,6 +1,6 @@
-# Systematic Strategy Research Lab
+# Holdout Research
 
-Source for https://nakulpillai2407.github.io: hypothesis-driven trading strategy research, built with MkDocs Material.
+Source for https://nakulpillai2407.github.io: an independent systematic strategy research lab (personal project), built with MkDocs Material.
 
 ## Local preview
 

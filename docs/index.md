@@ -1,6 +1,6 @@
-# Systematic Strategy Research Lab
+# Holdout Research
 
-An independent personal research project: each idea starts with an economic hypothesis, is tested with the same backtesting process, and is written up honestly, including when it doesn't work.
+An independent systematic strategy research lab: each idea starts with an economic hypothesis, is tested on data it was never designed on (the holdout), and is written up honestly, including when it doesn't work.
 
 !!! note "What this is"
     A personal project by [Nakul Pillai](about.md), built alongside an MSc in Financial Technology at Imperial College London. It is not a company or a live trading operation.
