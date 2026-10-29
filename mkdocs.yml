@@ -30,6 +30,7 @@ nav:
   - Strategies:
       - Overview: strategies/index.md
       - Lead-Lag Centrality: strategies/lead-lag-centrality.md
+      - News Sentiment: strategies/news-sentiment.md
   - Methodology: methodology.md
   - Research Log: research-log.md
   - Tools: tools.md
