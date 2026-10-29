@@ -1,0 +1,5 @@
+.nowrap-first td:first-child, .nowrap-first th:first-child { white-space: nowrap; }
+.strong-first td:first-child { font-weight: 600; }
+.nowrap-last td:last-child, .nowrap-last th:last-child { white-space: nowrap; }
+.nowrap-first td, .nowrap-last td { vertical-align: top; }
+.nowrap-first small { color: var(--md-default-fg-color--light); }

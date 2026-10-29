@@ -1,0 +1,1238 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Independent systematic strategy research lab. Hypothesis-driven trading strategies, tested out of sample, with failures published.">
+      
+      
+        <meta name="author" content="Nakul Pillai">
+      
+      
+        <link rel="canonical" href="https://nakulpillai2407.github.io/strategies/news-sentiment/">
+      
+      
+        <link rel="prev" href="../lead-lag-centrality/">
+      
+      
+        <link rel="next" href="../sector-residual-reversion/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/logo.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+    
+    
+      
+        <title>HR-002 News Sentiment - Holdout Research</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#hr-002-news-sentiment" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Holdout Research" class="md-header__button md-logo" aria-label="Holdout Research" data-md-component="logo">
+      
+  <img src="../../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Holdout Research
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              HR-002 News Sentiment
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/NakulPillai2407" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    NakulPillai2407
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+  Strategies
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../methodology/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Methodology
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../research-log/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Research Log
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../about/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  About
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Holdout Research" class="md-nav__button md-logo" aria-label="Holdout Research" data-md-component="logo">
+      
+  <img src="../../assets/logo.svg" alt="logo">
+
+    </a>
+    Holdout Research
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/NakulPillai2407" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    NakulPillai2407
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Strategies
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Strategies
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lead-lag-centrality/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HR-001 Lead-Lag Centrality
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HR-002 News Sentiment
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HR-002 News Sentiment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-hypothesis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Hypothesis
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-data-and-universe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Data and universe
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-signal-construction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Signal construction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-backtest-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Backtest results
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Backtest results">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#where-the-effect-is" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where the effect is
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-robustness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Robustness
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-what-went-wrong-and-limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. What went wrong and limitations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Next steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-links" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Links
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sector-residual-reversion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HR-003 Sector Residual Reversion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../methodology/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Methodology
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../research-log/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Research Log
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-hypothesis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Hypothesis
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-data-and-universe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Data and universe
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-signal-construction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Signal construction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-backtest-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Backtest results
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Backtest results">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#where-the-effect-is" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where the effect is
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-robustness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Robustness
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-what-went-wrong-and-limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. What went wrong and limitations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Next steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-links" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Links
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="hr-002-news-sentiment">HR-002: News Sentiment<a class="headerlink" href="#hr-002-news-sentiment" title="Permanent link">&para;</a></h1>
+<p><strong>Status:</strong> Negative result<br />
+<strong>Last updated:</strong> 2026-10-29<br />
+<strong>Asset class:</strong> US large-cap equities<br />
+<strong>Code:</strong> <a href="https://github.com/NakulPillai2407/news-sentiment-research">news-sentiment-research</a><br />
+<strong>Reports:</strong> <a href="../../assets/news-sentiment/news-sentiment-daily-report.pdf">Daily test (PDF)</a> and <a href="../../assets/news-sentiment/news-sentiment-intraday-report.pdf">intraday test (PDF)</a>  </p>
+<div class="admonition warning">
+<p class="admonition-title">Headline result</p>
+<p>Tested twice, once with daily news and once with exact release times and 1-minute prices, trading on the sentiment of a headline <strong>does not beat simply holding the same stocks</strong>. Sentiment is strongly linked to returns on the day of the article, but by the time a trade can be placed, what is left is a few basis points, below the cost of trading it.</p>
+</div>
+<h2 id="1-hypothesis">1. Hypothesis<a class="headerlink" href="#1-hypothesis" title="Permanent link">&para;</a></h2>
+<p>When a company gets clearly good or bad news, the market does not finish pricing it in at once. A stock's abnormal return should keep moving in the direction of the news after the headline is out, by more than it costs to trade. The strategy is to score each headline with FinBERT, buy after clearly positive news and short after clearly negative news.</p>
+<p><strong>Why it might work.</strong> The tone of a story is soft, qualitative information that is harder to price than a number such as an earnings surprise. Prices have been found to under-react to negative words in firm news (Tetlock, Saar-Tsechansky and Macskassy, 2008) and to drift after bad headlines (Chan, 2003), and attention is limited and uneven (Barber and Odean, 2008). The evidence is not one-sided: media pessimism can also reverse rather than drift (Tetlock, 2007). In liquid US large caps, where algorithms read the same feeds within seconds, the reaction may well be over before a trade can be placed.</p>
+<p><strong>What would prove it wrong</strong> (stated in advance):</p>
+<ul>
+<li>The in-sample coefficient of the abnormal return on the sentiment score, at the trading horizon, is not positive and significant at 5%.</li>
+<li>The holdout net-of-cost Sharpe ratio does not beat the equal-weight benchmark.</li>
+</ul>
+<p>Both had to hold. Neither did, in either test.</p>
+<h2 id="2-data-and-universe">2. Data and universe<a class="headerlink" href="#2-data-and-universe" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Test 1: daily</th>
+<th>Test 2: intraday</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>News</td>
+<td>FNSPID, dated to the day</td>
+<td>Alpaca (Benzinga), exact release time</td>
+</tr>
+<tr>
+<td>Prices</td>
+<td>Daily adjusted closes</td>
+<td>1-minute bars (IEX feed)</td>
+</tr>
+<tr>
+<td>Period</td>
+<td>2021 to 2023</td>
+<td>January 2024 to September 2026</td>
+</tr>
+<tr>
+<td>Holdout</td>
+<td>Last 12 months, used once</td>
+<td>Last 12 months, used once</td>
+</tr>
+<tr>
+<td>Universe</td>
+<td>50 US stocks drawn at random across industries</td>
+<td>50 US stocks drawn at random from the 84 most heavily covered</td>
+</tr>
+<tr>
+<td>Time of day</td>
+<td>Date only, no release time</td>
+<td>Exact release time</td>
+</tr>
+<tr>
+<td>Unit of observation</td>
+<td>Stock-day: the mean score of that day's articles (15,592 stock-days from 28,078 articles)</td>
+<td>One article-ticker pair (25,049, regular-hours releases only)</td>
+</tr>
+<tr>
+<td>Text scored</td>
+<td>Headline, plus the summary where the file has one</td>
+<td>Headline only</td>
+</tr>
+</tbody>
+</table>
+<p>Multi-stock roundup articles are removed, because they say nothing about one stock, but the rule differs: the daily test drops a headline that appears on three or more of the universe's stocks on the same day, the intraday test drops articles tagged with more than two tickers. In the intraday test only articles released in regular hours are traded, since an after-hours article could only be traded at the next open. Both universes were drawn using article counts and a fixed seed, never prices.</p>
+<h2 id="3-signal-construction">3. Signal construction<a class="headerlink" href="#3-signal-construction" title="Permanent link">&para;</a></h2>
+<p>All parameters were written down before the data was seen, and later changes are logged as dated deviations in each study's <code>PARAMETERS.md</code>.</p>
+<ol>
+<li><strong>Score.</strong> The headline's FinBERT score is the probability of positive minus the probability of negative, from -1 to +1. VADER is the comparison model.</li>
+<li><strong>Signal.</strong> Long at +0.5 or above, short at -0.5 or below.</li>
+<li><strong>Abnormal return.</strong> The stock's return minus its beta times the market's return, with beta estimated only from days before the event.</li>
+<li><strong>Entry and exit.</strong> Test 1 enters at the close of the article's date and holds one day. Test 2 enters at the open of the first minute bar starting at least 60 seconds after the release and holds 60 minutes, or to the close if that comes first.</li>
+<li><strong>Costs and sizing.</strong> 10 bps round trip (20 and 30 bps as checks), equal weight across the day's trades, no leverage, one open position per stock.</li>
+</ol>
+<h2 id="4-backtest-results">4. Backtest results<a class="headerlink" href="#4-backtest-results" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Measure</th>
+<th style="text-align: right;">Test 1 in sample</th>
+<th style="text-align: right;">Test 1 held out</th>
+<th style="text-align: right;">Test 2 in sample</th>
+<th style="text-align: right;">Test 2 held out</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cumulative return, after costs</td>
+<td style="text-align: right;">-42.0%</td>
+<td style="text-align: right;">-9.8%</td>
+<td style="text-align: right;">-39.8%</td>
+<td style="text-align: right;">-17.8%</td>
+</tr>
+<tr>
+<td>Cumulative return, before costs</td>
+<td style="text-align: right;">-6.2%</td>
+<td style="text-align: right;">+13.1%</td>
+<td style="text-align: right;">-6.8%</td>
+<td style="text-align: right;">+5.7%</td>
+</tr>
+<tr>
+<td>Sharpe ratio, after costs</td>
+<td style="text-align: right;">-0.81</td>
+<td style="text-align: right;">-0.34</td>
+<td style="text-align: right;">-5.04</td>
+<td style="text-align: right;">-3.74</td>
+</tr>
+<tr>
+<td>Sharpe ratio, before costs</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">0.66</td>
+<td style="text-align: right;">-0.68</td>
+<td style="text-align: right;">1.09</td>
+</tr>
+<tr>
+<td>Equal-weight stocks, Sharpe</td>
+<td style="text-align: right;">0.39</td>
+<td style="text-align: right;">0.94</td>
+<td style="text-align: right;">1.69</td>
+<td style="text-align: right;">1.18</td>
+</tr>
+<tr>
+<td>Max drawdown, after costs</td>
+<td style="text-align: right;">-48.1%</td>
+<td style="text-align: right;">-20.1%</td>
+<td style="text-align: right;">-39.7%</td>
+<td style="text-align: right;">-17.8%</td>
+</tr>
+</tbody>
+</table>
+<p>Net returns in Test 2 look extreme because a 10 bps cost is charged on capital every day a trade is open, which compounds. The before-cost rows are the fairer read of whether there is a signal. Even before costs, neither test beat the equal-weight benchmark in the holdout (0.66 against 0.94, and 1.09 against 1.18).</p>
+<p><img alt="Test 1: growth of $1, holdout year" src="../../assets/news-sentiment/daily-growth-holdout.png" /></p>
+<p><img alt="Test 2: growth of $1, holdout year" src="../../assets/news-sentiment/intraday-growth-holdout.png" /></p>
+<h3 id="where-the-effect-is">Where the effect is<a class="headerlink" href="#where-the-effect-is" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Abnormal return per unit of sentiment</th>
+<th style="text-align: right;">In sample</th>
+<th style="text-align: right;">Holdout</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Test 1, article's own day</td>
+<td style="text-align: right;">+110.2 bps (t = 4.65)</td>
+<td style="text-align: right;">+78.1 bps (t = 4.40)</td>
+</tr>
+<tr>
+<td>Test 1, next day (the trade)</td>
+<td style="text-align: right;">+9.7 bps (p = 0.30)</td>
+<td style="text-align: right;">+8.1 bps (p = 0.34)</td>
+</tr>
+<tr>
+<td>Test 2, 60 minutes after entry (the trade)</td>
+<td style="text-align: right;">+3.95 bps (p = 0.56)</td>
+<td style="text-align: right;">+4.0 bps (p = 0.10)</td>
+</tr>
+</tbody>
+</table>
+<p>Sentiment is tightly tied to the move on the day of the article, which a trader cannot capture. What is left after the release is about the size of the cost or smaller.</p>
+<p><img alt="Test 1: abnormal return in the news direction, day 0 to day 4" src="../../assets/news-sentiment/daily-event-profile.png" /></p>
+<p><em>Test 1: average abnormal return in the direction of the sentiment, after days with strong sentiment (1,981 in sample, 861 in the holdout; the chart's "out-of-sample" label means the holdout). The move is concentrated on day 0. The green bar, day 1, is the one the strategy trades, and it is small.</em></p>
+<p><img alt="Test 2: average move in the news direction after entry" src="../../assets/news-sentiment/intraday-profile-by-minute.png" /></p>
+<h2 id="5-robustness">5. Robustness<a class="headerlink" href="#5-robustness" title="Permanent link">&para;</a></h2>
+<p>The checks below are for the intraday test unless a line says otherwise. The daily test also ran thresholds of 0.3 and 0.7, VADER in place of FinBERT and a no-cost version, all in its report; its net Sharpe at a 0.3 threshold is -0.95 in sample and -0.17 held out.</p>
+<ul>
+<li><strong>Horizons.</strong> Test 2 also looked at 5, 15, 30, 120, 180, 240 and 300 minutes. All 16 estimates (8 horizons, 2 periods) are positive, from about 1 to 8 bps, and none beats the cost. Two have p below 0.05 (5 and 120 minutes, holdout), which is about what chance gives across 16 tests.</li>
+</ul>
+<p><img alt="Test 2: net Sharpe by holding period" src="../../assets/news-sentiment/intraday-sharpe-by-horizon.png" /></p>
+<p><em>Net Sharpe at a 10 bps cost for each holding period, in sample and in the holdout. Only 60 minutes (dotted line) was pre-specified; the rest are exploratory. Every horizon is negative, and longer holds lose less only because they trade less often.</em></p>
+<ul>
+<li><strong>Thresholds and model.</strong> Net Sharpe is negative at every threshold (0.3, 0.5 and 0.7) and for both FinBERT and VADER, in both periods.</li>
+<li><strong>Costs.</strong> At 20 and 30 bps the 60-minute holdout Sharpe falls from -3.74 to -8.57 and -13.40.</li>
+<li><strong>Standard errors.</strong> Clustering by date instead of by stock gives the same answer.</li>
+<li><strong>Code checks.</strong> Both notebooks were run on simulated data first: a planted effect was recovered, and a world with no effect gave nothing.</li>
+</ul>
+<h2 id="6-what-went-wrong-and-limitations">6. What went wrong and limitations<a class="headerlink" href="#6-what-went-wrong-and-limitations" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>The reaction is over before a trade can act.</strong> Daily data cannot show this, and minute data shows it directly.</li>
+<li><strong>The first design was replaced.</strong> Test 1 began as a delayed three-day hold. That was swapped for an entry at the close of the article's date after the first results were seen, because the hypothesis was always to trade straight after the news. It is logged as a post-hoc deviation, so Test 1's holdout result is exploratory.</li>
+<li><strong>The daily test has a known bias in its favour.</strong> Its news file has dates but no times, so some articles dated D were published after the close of D, and entering at that close is then slightly ahead of the information. This flatters the daily strategy, and it still lost.</li>
+<li><strong>Heavily covered stocks only.</strong> The universes are today's well-known US stocks, where the market is fastest. Survivorship bias is likely.</li>
+<li><strong>Free price feed.</strong> Test 2 uses the IEX feed, which carries part of market volume, so prices are approximate and some minutes have no bar. About 3.5% of signals were skipped for stale bars.</li>
+<li><strong>Costs are simplified.</strong> A flat 10 bps ignores the wider spread just after a release and the cost of borrowing stock to short.</li>
+<li><strong>Exploratory leads are not results.</strong> A 0.7 threshold had the best holdout Sharpe before costs (2.16), but in sample the same setting was negative (-0.83) and its holdout Sharpe after costs was still -2.09. Treat it as noise until it replicates on new data.</li>
+</ul>
+<h2 id="7-next-steps">7. Next steps<a class="headerlink" href="#7-next-steps" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Tick-level data and faster execution, to test the first seconds after release.</li>
+<li>Measure the return in the minutes before each article, to see how much of the move had already happened.</li>
+<li>A spread and size cost model, with borrowing costs on shorts.</li>
+<li>Smaller and less covered stocks, where the market may be slower.</li>
+<li>A later period or new stocks to test the holdout leads.</li>
+<li>Scoring full article text and separating first reports from repeats.</li>
+</ul>
+<h2 id="8-links">8. Links<a class="headerlink" href="#8-links" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../../assets/news-sentiment/news-sentiment-daily-report.pdf">Daily test report (PDF)</a></li>
+<li><a href="../../assets/news-sentiment/news-sentiment-intraday-report.pdf">Intraday test report (PDF)</a></li>
+<li><a href="https://github.com/NakulPillai2407/news-sentiment-research">Code, notebooks and parameters</a></li>
+</ul>
+<p><strong>References</strong></p>
+<ul>
+<li>Barber, B. and Odean, T. (2008). All that glitters: the effect of attention and news on the buying behavior of individual and institutional investors. <em>Review of Financial Studies</em>, 21(2).</li>
+<li>Chan, W. (2003). Stock price reaction to news and no-news: drift and reversal after headlines. <em>Journal of Financial Economics</em>, 70(2).</li>
+<li>Tetlock, P. (2007). Giving content to investor sentiment: the role of media in the stock market. <em>Journal of Finance</em>, 62(3).</li>
+<li>Tetlock, P., Saar-Tsechansky, M. and Macskassy, S. (2008). More than words: quantifying language to measure firms' fundamentals. <em>Journal of Finance</em>, 63(3).</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Research project only. Nothing here is investment advice.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.top", "navigation.sections", "content.code.copy", "toc.follow"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
