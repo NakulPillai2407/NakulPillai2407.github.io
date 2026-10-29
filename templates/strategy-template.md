@@ -1,4 +1,4 @@
-# Strategy NN: Name
+# HR-NNN: Name
 
 **Status:** idea / in progress / shelved / to improve  
 **Asset class:**  

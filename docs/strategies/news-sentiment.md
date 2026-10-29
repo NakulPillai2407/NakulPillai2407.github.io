@@ -1,10 +1,9 @@
-# Strategy 02: News Sentiment
+# HR-002: News Sentiment
 
 **Status:** Negative result  
 **Asset class:** US large-cap equities  
 **Code:** [news-sentiment-research](https://github.com/NakulPillai2407/news-sentiment-research)  
 **Reports:** [Daily test (PDF)](../assets/news-sentiment/news-sentiment-daily-report.pdf) and [intraday test (PDF)](../assets/news-sentiment/news-sentiment-intraday-report.pdf)  
-**Playground:** not yet built
 
 !!! warning "Headline result"
     Tested twice, once with daily news and once with exact release times and 1-minute prices, trading on the sentiment of a headline **does not beat simply holding the same stocks**. Sentiment is strongly linked to returns on the day of the article, but by the time a trade can be placed, what is left is a few basis points, below the cost of trading it.
@@ -32,7 +31,7 @@ Both had to hold. Neither did, in either test.
 | Held out | Last 12 months, used once | Last 12 months, used once |
 | Universe | 50 US stocks drawn at random across industries | 50 US stocks drawn at random from the 84 most heavily covered |
 | Time of day | Date only, no release time | Exact release time |
-| Unit of observation | Stock-day: the mean score of that day's articles (15,592 stock-days from 28,072 articles) | One article-ticker pair (25,049, regular-hours releases only) |
+| Unit of observation | Stock-day: the mean score of that day's articles (15,592 stock-days from 28,078 articles) | One article-ticker pair (25,049, regular-hours releases only) |
 | Text scored | Headline, plus the summary where the file has one | Headline only |
 
 Multi-stock roundup articles are removed, because they say nothing about one stock, but the rule differs: the daily test drops a headline that appears on three or more of the universe's stocks on the same day, the intraday test drops articles tagged with more than two tickers. In the intraday test only articles released in regular hours are traded, since an after-hours article could only be traded at the next open. Both universes were drawn using article counts and a fixed seed, never prices.
@@ -110,7 +109,6 @@ The checks below are for the intraday test unless a line says otherwise. The dai
 - [Daily test report (PDF)](../assets/news-sentiment/news-sentiment-daily-report.pdf)
 - [Intraday test report (PDF)](../assets/news-sentiment/news-sentiment-intraday-report.pdf)
 - [Code, notebooks and parameters](https://github.com/NakulPillai2407/news-sentiment-research)
-- [The live Sentiment Signal app](https://github.com/NakulPillai2407/sentiment-signal)
 
 **References**
 

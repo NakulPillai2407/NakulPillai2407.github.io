@@ -29,12 +29,11 @@ nav:
   - Home: index.md
   - Strategies:
       - Overview: strategies/index.md
-      - Lead-Lag Centrality: strategies/lead-lag-centrality.md
-      - News Sentiment: strategies/news-sentiment.md
-      - Sector Residual Reversion: strategies/sector-residual-reversion.md
+      - HR-001 Lead-Lag Centrality: strategies/lead-lag-centrality.md
+      - HR-002 News Sentiment: strategies/news-sentiment.md
+      - HR-003 Sector Residual Reversion: strategies/sector-residual-reversion.md
   - Methodology: methodology.md
   - Research Log: research-log.md
-  - Tools: tools.md
   - About: about.md
 
 markdown_extensions:
@@ -49,6 +48,9 @@ markdown_extensions:
   - pymdownx.highlight
   - pymdownx.superfences
   - pymdownx.details
+
+extra_css:
+  - stylesheets/extra.css
 
 extra_javascript:
   - javascripts/mathjax.js

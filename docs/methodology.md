@@ -24,7 +24,3 @@ Every strategy on this site is tested the same way, so results can be compared a
 ## Multiple testing
 
 The more variants that are tried, the more likely one looks good by chance. Every variant tried is recorded in the [Research Log](research-log.md), and results are interpreted with that in mind. Adjustments such as the deflated Sharpe ratio will be added as the number of trials grows.
-
-## Shared engine
-
-TODO: describe the shared backtesting engine (link to the `multi-strategy-backtester` repo) once strategies are ported onto it.

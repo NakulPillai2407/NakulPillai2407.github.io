@@ -1,10 +1,9 @@
-# Strategy 03: Sector Residual Reversion
+# HR-003: Sector Residual Reversion
 
 **Status:** Negative result  
 **Asset class:** US large-cap equities (S&P 500 members, point in time)  
 **Code:** [sector-residual-reversion](https://github.com/NakulPillai2407/sector-residual-reversion)  
 **Report:** [Full report (PDF, 20 pages)](../assets/sector-residual-reversion/sector-residual-reversion-report.pdf)  
-**Playground:** not yet built
 
 !!! warning "Headline result"
     On a holdout that was run once, after every rule was frozen, the strategy **lost money before costs and far more after them**. The pre-registered rule returns **NOT SUPPORTED**: the reversal coefficient is -0.0040 (t = -0.66), the gross Sharpe ratio is -0.24 with an interval that includes zero, and the net Sharpe ratio at 5 bp per side is -4.02. The book trades about 1.77 times its size every day, so costs alone take roughly 22% a year.
@@ -105,6 +104,8 @@ The holdout was used once, after the freeze. Gross and net results are shown for
 | H1b(ii): alpha vs SPY with t above 2 | -26.0% a year, t = -6.50 | No |
 | GROSS-ONLY: H1a plus gross Sharpe interval above 0 | H1a fails; (-1.46, 1.01) | No |
 
+Note: the decision-rule intervals differ slightly from the results table above (for example -5.38 vs -5.39). The source report discloses the small difference; it was not investigated and does not change any conclusion.
+
 Verdict: **NOT SUPPORTED**. This is weaker than my prior, because the gross effect was not detectable either.
 
 ## 5. Robustness
@@ -172,7 +173,7 @@ Only Utilities shows a holdout gross Sharpe interval entirely above zero (1.46, 
 - [Full report (PDF)](../assets/sector-residual-reversion/sector-residual-reversion-report.pdf)
 - [Code and notebook](https://github.com/NakulPillai2407/sector-residual-reversion)
 
-**References** (details to be checked before relying on them)
+**References**
 
 - Jegadeesh, N. (1990). Evidence of predictable behavior of security returns. *Journal of Finance*, 45(3).
 - Lehmann, B. (1990). Fads, martingales, and market efficiency. *Quarterly Journal of Economics*, 105(1).

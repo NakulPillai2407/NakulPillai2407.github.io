@@ -1,10 +1,9 @@
-# Strategy 01: Lead-Lag Centrality
+# HR-001: Lead-Lag Centrality
 
 **Status:** Negative result (to revisit)  
 **Asset class:** US tech and semiconductor equities  
 **Code:** [lead-lag-centrality-strategy](https://github.com/NakulPillai2407/lead-lag-centrality-strategy)  
 **Report:** [Full report (PDF, 20 pages)](../assets/lead-lag/lead-lag-centrality-report.pdf)  
-**Playground:** not yet built
 
 !!! warning "Headline result"
     Built exactly as specified and locked before the backtest ran, the strategy **does not beat simply holding the same stocks**, in sample or out of sample. The reason is informative: neighbouring stocks do move with a hub, but almost entirely **on the same day**, so there is no multi-day catch-up to trade.
