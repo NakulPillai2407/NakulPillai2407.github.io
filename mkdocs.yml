@@ -4,9 +4,12 @@ site_author: Nakul Pillai
 site_url: https://nakulpillai2407.github.io/
 repo_url: https://github.com/NakulPillai2407
 repo_name: NakulPillai2407
+copyright: Research project only. Nothing here is investment advice.
 
 theme:
   name: material
+  logo: assets/logo.svg
+  favicon: assets/logo.svg
   features:
     - navigation.tabs
     - navigation.top
@@ -16,11 +19,15 @@ theme:
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
+      primary: blue grey
+      accent: teal
       toggle:
         icon: material/weather-night
         name: Switch to dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
+      primary: blue grey
+      accent: teal
       toggle:
         icon: material/weather-sunny
         name: Switch to light mode

@@ -20,9 +20,9 @@ The maths, with a short diagram if it helps.
 
 ## 4. Backtest results
 
-Equity curve, drawdowns, in-sample vs out-of-sample split, with transaction costs included.
+Equity curve, drawdowns, in-sample vs holdout split, with transaction costs included.
 
-| Metric | In-sample | Out-of-sample | Benchmark |
+| Metric | In-sample | Holdout | Benchmark |
 |--------|-----------|---------------|-----------|
 | Annualised return | | | |
 | Annualised volatility | | | |

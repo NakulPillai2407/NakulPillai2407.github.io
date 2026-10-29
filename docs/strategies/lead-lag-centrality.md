@@ -1,12 +1,13 @@
 # HR-001: Lead-Lag Centrality
 
 **Status:** Negative result (to revisit)  
+**Last updated:** 2026-10-29  
 **Asset class:** US tech and semiconductor equities  
 **Code:** [lead-lag-centrality-strategy](https://github.com/NakulPillai2407/lead-lag-centrality-strategy)  
 **Report:** [Full report (PDF, 20 pages)](../assets/lead-lag/lead-lag-centrality-report.pdf)  
 
 !!! warning "Headline result"
-    Built exactly as specified and locked before the backtest ran, the strategy **does not beat simply holding the same stocks**, in sample or out of sample. The reason is informative: neighbouring stocks do move with a hub, but almost entirely **on the same day**, so there is no multi-day catch-up to trade.
+    Built exactly as specified and locked before the backtest ran, the strategy **does not beat simply holding the same stocks**, in sample or in the holdout. The reason is informative: neighbouring stocks do move with a hub, but almost entirely **on the same day**, so there is no multi-day catch-up to trade.
 
 ## 1. Hypothesis
 
@@ -19,7 +20,7 @@ Some stocks are watched much more closely than others. When one of these highly 
 **What would prove it wrong** (stated in advance):
 
 - Connected peers move on the same day as the hub, with no measurable lag.
-- A real lag exists but does not produce a positive risk-adjusted return after realistic costs (5 to 10 bps round trip), especially out of sample.
+- A real lag exists but does not produce a positive risk-adjusted return after realistic costs (5 to 10 bps round trip), especially in the holdout.
 - The apparent "lag" is fully explained by ordinary same-day correlation.
 
 ## 2. Data and universe
@@ -42,7 +43,7 @@ All parameters were fixed before the backtest was run and never tuned afterwards
     |r_{h,t}| > 2\,\sigma_{h,t-1}
     \]
 
-    This produced **736 shocks** (639 in sample, 97 out of sample).
+    This produced **736 shocks** (639 in sample, 97 in the holdout).
 4. **Trade.** At the next day's close, buy an equal-weighted basket of the hub's connected neighbours (short if the hub fell). Hold for 3 days.
 5. **Costs and sizing.** 10 bps round-trip cost per trade. Capital is split equally across open trades, with no leverage. A position was open on about 48% of trading days.
 
@@ -76,7 +77,7 @@ The final 12 months were held out from the whole design process and used once, a
 
 ![Growth of $1, in sample](../assets/lead-lag/growth-in-sample.png)
 
-### Out of sample (final 12 months)
+### Holdout (final 12 months)
 
 | Series | Cumulative return | Annualised return | Sharpe | Max drawdown | Sortino | Win rate |
 |--------|------------------:|------------------:|-------:|-------------:|--------:|---------:|
@@ -85,14 +86,14 @@ The final 12 months were held out from the whole design process and used once, a
 | Equal-weight stocks | 48.7% | 48.9% | 1.582 | -14.6% | 2.480 | 57.0% |
 | S&P 500 | 15.7% | 15.7% | 1.211 | -9.1% | 1.857 | 53.0% |
 
-![Growth of $1, out of sample](../assets/lead-lag/growth-out-of-sample.png)
+![Growth of $1, in the holdout](../assets/lead-lag/growth-out-of-sample.png)
 
 **Reading the results.**
 
 - Both benchmarks beat the strategy on every metric in both periods: higher Sharpe and Sortino, smaller drawdowns.
 - The win rate is about 50% in both periods, essentially a coin flip on the bets it makes.
 - Removing costs lifts the in-sample Sharpe from -0.163 to about flat (0.018), so part of the in-sample loss comes from trading too often relative to the size of the edge, not only from a weak signal.
-- The out-of-sample Sharpe (0.453) is better than the in-sample one, which is unusual and a reason for caution rather than celebration, given how sensitive it is to the threshold (below).
+- The holdout Sharpe (0.453) is better than the in-sample one, which is unusual and a reason for caution rather than celebration, given how sensitive it is to the threshold (below).
 - Cumulative returns across the two periods are not directly comparable because of their different lengths. Annualised return, Sharpe and Sortino are the right comparison.
 
 ## 5. Robustness
@@ -116,7 +117,7 @@ Neighbours move strongly with the hub, but the move is absorbed almost entirely 
 
 Only the threshold was stress-tested. The 0.5 value was fixed in advance and kept.
 
-| Threshold | Out-of-sample Sharpe |
+| Threshold | Holdout Sharpe |
 |-----------|---------------------:|
 | 0.4 | -0.318 |
 | **0.5 (locked)** | **0.453** |
@@ -134,7 +135,7 @@ The median network density at 0.5 is 28%. In market-wide stress it saturates: in
 
 - **Look-ahead bias:** traced end to end on the first shock in the sample (network built on 29 Mar 2019, volatility measured to 2 Apr, shock on 3 Apr, trade entered on 4 Apr). Every step only uses information available before it, confirmed by an explicit check in the code.
 - **Data snooping:** all parameters were committed to before the result was known.
-- **Out-of-sample validation:** the last 12 months were used once, at the end.
+- **Holdout validation:** the last 12 months were used once, at the end.
 
 ## 6. What went wrong and limitations
 

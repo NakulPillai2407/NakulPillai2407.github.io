@@ -15,11 +15,11 @@ An independent systematic strategy research lab: each idea starts with an econom
 
 <div class="nowrap-first strong-first" markdown>
 
-| Ref | Strategy | Asset class | Hypothesis | Out-of-sample result | Status |
-|-----|----------|-------------|------------|----------------------|--------|
-| HR-001 | [Lead-Lag Centrality](strategies/lead-lag-centrality.md) | US tech / semiconductor equities | Highly connected hub stocks lead their neighbours | Sharpe 0.45 vs 1.58 for equal-weight; no multi-day lag found | Negative result |
-| HR-002 | [News Sentiment](strategies/news-sentiment.md) | US large-cap equities | Clearly positive (negative) news keeps moving a stock's abnormal return after the headline | Daily Sharpe -0.34 vs 0.94 for equal-weight; intraday -3.74 vs 1.18 | Negative result |
-| HR-003 | [Sector Residual Reversion](strategies/sector-residual-reversion.md) | US large-cap equities | The part of a stock's move that its sector ETF does not explain reverses the next day | Sharpe -4.02 after costs, -0.24 before; reversal coefficient t = -0.66 | Negative result |
+| Ref | Strategy | Asset class | Hypothesis |
+|-----|----------|-------------|------------|
+| HR-001 | [Lead-Lag Centrality](strategies/lead-lag-centrality.md) | US tech / semiconductor equities | Highly connected hub stocks lead their neighbours |
+| HR-002 | [News Sentiment](strategies/news-sentiment.md) | US large-cap equities | Clearly positive (negative) news keeps moving a stock's abnormal return after the headline |
+| HR-003 | [Sector Residual Reversion](strategies/sector-residual-reversion.md) | US large-cap equities | The part of a stock's move that its sector ETF does not explain reverses the next day |
 
 </div>
 

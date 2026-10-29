@@ -1,6 +1,7 @@
 # HR-002: News Sentiment
 
 **Status:** Negative result  
+**Last updated:** 2026-10-29  
 **Asset class:** US large-cap equities  
 **Code:** [news-sentiment-research](https://github.com/NakulPillai2407/news-sentiment-research)  
 **Reports:** [Daily test (PDF)](../assets/news-sentiment/news-sentiment-daily-report.pdf) and [intraday test (PDF)](../assets/news-sentiment/news-sentiment-intraday-report.pdf)  
@@ -17,7 +18,7 @@ When a company gets clearly good or bad news, the market does not finish pricing
 **What would prove it wrong** (stated in advance):
 
 - The in-sample coefficient of the abnormal return on the sentiment score, at the trading horizon, is not positive and significant at 5%.
-- The held-out net-of-cost Sharpe ratio does not beat the equal-weight benchmark.
+- The holdout net-of-cost Sharpe ratio does not beat the equal-weight benchmark.
 
 Both had to hold. Neither did, in either test.
 
@@ -28,7 +29,7 @@ Both had to hold. Neither did, in either test.
 | News | FNSPID, dated to the day | Alpaca (Benzinga), exact release time |
 | Prices | Daily adjusted closes | 1-minute bars (IEX feed) |
 | Period | 2021 to 2023 | January 2024 to September 2026 |
-| Held out | Last 12 months, used once | Last 12 months, used once |
+| Holdout | Last 12 months, used once | Last 12 months, used once |
 | Universe | 50 US stocks drawn at random across industries | 50 US stocks drawn at random from the 84 most heavily covered |
 | Time of day | Date only, no release time | Exact release time |
 | Unit of observation | Stock-day: the mean score of that day's articles (15,592 stock-days from 28,078 articles) | One article-ticker pair (25,049, regular-hours releases only) |
@@ -57,15 +58,15 @@ All parameters were written down before the data was seen, and later changes are
 | Equal-weight stocks, Sharpe | 0.39 | 0.94 | 1.69 | 1.18 |
 | Max drawdown, after costs | -48.1% | -20.1% | -39.7% | -17.8% |
 
-Net returns in Test 2 look extreme because a 10 bps cost is charged on capital every day a trade is open, which compounds. The before-cost rows are the fairer read of whether there is a signal. Even before costs, neither test beat the equal-weight benchmark out of sample (0.66 against 0.94, and 1.09 against 1.18).
+Net returns in Test 2 look extreme because a 10 bps cost is charged on capital every day a trade is open, which compounds. The before-cost rows are the fairer read of whether there is a signal. Even before costs, neither test beat the equal-weight benchmark in the holdout (0.66 against 0.94, and 1.09 against 1.18).
 
-![Test 1: growth of $1, held-out year](../assets/news-sentiment/daily-growth-holdout.png)
+![Test 1: growth of $1, holdout year](../assets/news-sentiment/daily-growth-holdout.png)
 
-![Test 2: growth of $1, held-out year](../assets/news-sentiment/intraday-growth-holdout.png)
+![Test 2: growth of $1, holdout year](../assets/news-sentiment/intraday-growth-holdout.png)
 
 ### Where the effect is
 
-| Abnormal return per unit of sentiment | In sample | Held out |
+| Abnormal return per unit of sentiment | In sample | Holdout |
 |---|---:|---:|
 | Test 1, article's own day | +110.2 bps (t = 4.65) | +78.1 bps (t = 4.40) |
 | Test 1, next day (the trade) | +9.7 bps (p = 0.30) | +8.1 bps (p = 0.34) |
@@ -73,27 +74,36 @@ Net returns in Test 2 look extreme because a 10 bps cost is charged on capital e
 
 Sentiment is tightly tied to the move on the day of the article, which a trader cannot capture. What is left after the release is about the size of the cost or smaller.
 
+![Test 1: abnormal return in the news direction, day 0 to day 4](../assets/news-sentiment/daily-event-profile.png)
+
+*Test 1: average abnormal return in the direction of the sentiment, after days with strong sentiment (1,981 in sample, 861 in the holdout; the chart's "out-of-sample" label means the holdout). The move is concentrated on day 0. The green bar, day 1, is the one the strategy trades, and it is small.*
+
 ![Test 2: average move in the news direction after entry](../assets/news-sentiment/intraday-profile-by-minute.png)
 
 ## 5. Robustness
 
 The checks below are for the intraday test unless a line says otherwise. The daily test also ran thresholds of 0.3 and 0.7, VADER in place of FinBERT and a no-cost version, all in its report; its net Sharpe at a 0.3 threshold is -0.95 in sample and -0.17 held out.
 
-- **Horizons.** Test 2 also looked at 5, 15, 30, 120, 180, 240 and 300 minutes. All 16 estimates (8 horizons, 2 periods) are positive, from about 1 to 8 bps, and none beats the cost. Two have p below 0.05 (5 and 120 minutes, held out), which is about what chance gives across 16 tests.
+- **Horizons.** Test 2 also looked at 5, 15, 30, 120, 180, 240 and 300 minutes. All 16 estimates (8 horizons, 2 periods) are positive, from about 1 to 8 bps, and none beats the cost. Two have p below 0.05 (5 and 120 minutes, holdout), which is about what chance gives across 16 tests.
+
+![Test 2: net Sharpe by holding period](../assets/news-sentiment/intraday-sharpe-by-horizon.png)
+
+*Net Sharpe at a 10 bps cost for each holding period, in sample and in the holdout. Only 60 minutes (dotted line) was pre-specified; the rest are exploratory. Every horizon is negative, and longer holds lose less only because they trade less often.*
+
 - **Thresholds and model.** Net Sharpe is negative at every threshold (0.3, 0.5 and 0.7) and for both FinBERT and VADER, in both periods.
-- **Costs.** At 20 and 30 bps the 60-minute held-out Sharpe falls from -3.74 to -8.57 and -13.40.
+- **Costs.** At 20 and 30 bps the 60-minute holdout Sharpe falls from -3.74 to -8.57 and -13.40.
 - **Standard errors.** Clustering by date instead of by stock gives the same answer.
 - **Code checks.** Both notebooks were run on simulated data first: a planted effect was recovered, and a world with no effect gave nothing.
 
 ## 6. What went wrong and limitations
 
 - **The reaction is over before a trade can act.** Daily data cannot show this, and minute data shows it directly.
-- **The first design was replaced.** Test 1 began as a delayed three-day hold. That was swapped for an entry at the close of the article's date after the first results were seen, because the hypothesis was always to trade straight after the news. It is logged as a post-hoc deviation, so Test 1's held-out result is exploratory.
+- **The first design was replaced.** Test 1 began as a delayed three-day hold. That was swapped for an entry at the close of the article's date after the first results were seen, because the hypothesis was always to trade straight after the news. It is logged as a post-hoc deviation, so Test 1's holdout result is exploratory.
 - **The daily test has a known bias in its favour.** Its news file has dates but no times, so some articles dated D were published after the close of D, and entering at that close is then slightly ahead of the information. This flatters the daily strategy, and it still lost.
 - **Heavily covered stocks only.** The universes are today's well-known US stocks, where the market is fastest. Survivorship bias is likely.
 - **Free price feed.** Test 2 uses the IEX feed, which carries part of market volume, so prices are approximate and some minutes have no bar. About 3.5% of signals were skipped for stale bars.
 - **Costs are simplified.** A flat 10 bps ignores the wider spread just after a release and the cost of borrowing stock to short.
-- **Exploratory leads are not results.** A 0.7 threshold had the best held-out Sharpe before costs (2.16), but in sample the same setting was negative (-0.83) and its held-out Sharpe after costs was still -2.09. Treat it as noise until it replicates on new data.
+- **Exploratory leads are not results.** A 0.7 threshold had the best holdout Sharpe before costs (2.16), but in sample the same setting was negative (-0.83) and its holdout Sharpe after costs was still -2.09. Treat it as noise until it replicates on new data.
 
 ## 7. Next steps
 
@@ -101,7 +111,7 @@ The checks below are for the intraday test unless a line says otherwise. The dai
 - Measure the return in the minutes before each article, to see how much of the move had already happened.
 - A spread and size cost model, with borrowing costs on shorts.
 - Smaller and less covered stocks, where the market may be slower.
-- A later period or new stocks to test the held-out leads.
+- A later period or new stocks to test the holdout leads.
 - Scoring full article text and separating first reports from repeats.
 
 ## 8. Links

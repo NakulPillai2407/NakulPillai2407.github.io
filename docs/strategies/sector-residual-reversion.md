@@ -1,6 +1,7 @@
 # HR-003: Sector Residual Reversion
 
 **Status:** Negative result  
+**Last updated:** 2026-10-29  
 **Asset class:** US large-cap equities (S&P 500 members, point in time)  
 **Code:** [sector-residual-reversion](https://github.com/NakulPillai2407/sector-residual-reversion)  
 **Report:** [Full report (PDF, 20 pages)](../assets/sector-residual-reversion/sector-residual-reversion-report.pdf)  
