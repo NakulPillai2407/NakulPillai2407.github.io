@@ -31,9 +31,11 @@ Both had to hold. Neither did, in either test.
 | Period | 2021 to 2023 | January 2024 to September 2026 |
 | Held out | Last 12 months, used once | Last 12 months, used once |
 | Universe | 50 US stocks drawn at random across industries | 50 US stocks drawn at random from the 84 most heavily covered |
-| Events | Stock-days with news | 25,049 article-ticker pairs, regular-hours releases only |
+| Time of day | Date only, no release time | Exact release time |
+| Unit of observation | Stock-day: the mean score of that day's articles (15,592 stock-days from 28,072 articles) | One article-ticker pair (25,049, regular-hours releases only) |
+| Text scored | Headline, plus the summary where the file has one | Headline only |
 
-Multi-stock roundup articles are removed, because they say nothing about one stock. In the intraday test, only articles released in regular hours are traded, since an after-hours article could only be traded at the next open. Universes were drawn using article counts and a fixed seed, never prices.
+Multi-stock roundup articles are removed, because they say nothing about one stock, but the rule differs: the daily test drops a headline that appears on three or more of the universe's stocks on the same day, the intraday test drops articles tagged with more than two tickers. In the intraday test only articles released in regular hours are traded, since an after-hours article could only be traded at the next open. Both universes were drawn using article counts and a fixed seed, never prices.
 
 ## 3. Signal construction
 
@@ -76,6 +78,8 @@ Sentiment is tightly tied to the move on the day of the article, which a trader 
 
 ## 5. Robustness
 
+The checks below are for the intraday test unless a line says otherwise. The daily test also ran thresholds of 0.3 and 0.7, VADER in place of FinBERT and a no-cost version, all in its report; its net Sharpe at a 0.3 threshold is -0.95 in sample and -0.17 held out.
+
 - **Horizons.** Test 2 also looked at 5, 15, 30, 120, 180, 240 and 300 minutes. All 16 estimates (8 horizons, 2 periods) are positive, from about 1 to 8 bps, and none beats the cost. Two have p below 0.05 (5 and 120 minutes, held out), which is about what chance gives across 16 tests.
 - **Thresholds and model.** Net Sharpe is negative at every threshold (0.3, 0.5 and 0.7) and for both FinBERT and VADER, in both periods.
 - **Costs.** At 20 and 30 bps the 60-minute held-out Sharpe falls from -3.74 to -8.57 and -13.40.
@@ -86,6 +90,7 @@ Sentiment is tightly tied to the move on the day of the article, which a trader 
 
 - **The reaction is over before a trade can act.** Daily data cannot show this, and minute data shows it directly.
 - **The first design was replaced.** Test 1 began as a delayed three-day hold. That was swapped for an entry at the close of the article's date after the first results were seen, because the hypothesis was always to trade straight after the news. It is logged as a post-hoc deviation, so Test 1's held-out result is exploratory.
+- **The daily test has a known bias in its favour.** Its news file has dates but no times, so some articles dated D were published after the close of D, and entering at that close is then slightly ahead of the information. This flatters the daily strategy, and it still lost.
 - **Heavily covered stocks only.** The universes are today's well-known US stocks, where the market is fastest. Survivorship bias is likely.
 - **Free price feed.** Test 2 uses the IEX feed, which carries part of market volume, so prices are approximate and some minutes have no bar. About 3.5% of signals were skipped for stale bars.
 - **Costs are simplified.** A flat 10 bps ignores the wider spread just after a release and the cost of borrowing stock to short.
